@@ -1,0 +1,40 @@
+question- Minimum Length
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int T;
+    scanf("%d", &T);
+
+    while (T--) {
+        int N;
+        scanf("%d", &N);
+
+        int *A = (int *)malloc(N * sizeof(int));
+        int *B = (int *)malloc(N * sizeof(int));
+
+        for (int i = 0; i < N; i++) scanf("%d", &A[i]);
+        for (int i = 0; i < N; i++) scanf("%d", &B[i]);
+
+        int left = 0;
+        while (left < N && A[left] == B[left]) {
+            left++;
+        }
+
+        if (left == N) {
+            printf("0\n");
+        } else {
+            int right = N - 1;
+            while (right >= 0 && A[right] == B[right]) {
+                right--;
+            }
+            printf("%d\n", right - left + 1);
+        }
+
+        free(A);
+        free(B);
+    }
+
+    return 0;
+}
